@@ -16,6 +16,7 @@ So the whole script architecture will be made of several component in cascade:
 >  1. First: determinate "Where" in the Frame;
 >  2. Second: determinate "What" in the Frame.
 
+
 My project use many online tensorflow projects, as: 
   - YOLO Tensorflow (https://github.com/gliese581gg/YOLO_tensorflow);
   - TensorBox (https://github.com/Russell91/TensorBox).
@@ -31,7 +32,7 @@ All the Python library necessary could be installed easily trought pip install p
 To Test the script you have to open a Terminal window, go to the Repository directory and tape:
 
 ## 3.Script Usage
-### 1.Setting Parameters
+### Setting Parameters
   Into the script file, at the start, you will found this paragraph:
         
   ```python      
@@ -42,13 +43,13 @@ To Test the script you have to open a Terminal window, go to the Repository dire
     file_path_summary_result=folder_path_summary_result+'results.txt'
     path_video='input_video.mp4'
     path_video_out='output_video.mp4'
-    ```
+  ```
     
     
   Leave them as set, if you want to only try a run, otherwise you can change them to test on your own data.
   
   
-### 2.Usage
+### Usage
   After Set the Parameters, we can proceed and run the script:
   
   ```python
