@@ -31,10 +31,29 @@ All the Python library necessary could be installed easily trought pip install p
 To Test the script you have to open a Terminal window, go to the Repository directory and tape:
 
 ## 3.Script Usage
-
-```python
-  $ python tensorflow_video
-```
+### 1.Setting Parameters
+  Into the script file, at the start, you will found this paragraph:
+        
+  ```python      
+    folder_path_det_frames='det_frames/'
+    folder_path_det_result='det_reults/'
+    folder_path_summary_result='summary_result/'
+    file_name_summary_result='results.txt'
+    file_path_summary_result=folder_path_summary_result+'results.txt'
+    path_video='input_video.mp4'
+    path_video_out='output_video.mp4'
+    ```
+    
+    
+  Leave them as set, if you want to only try a run, otherwise you can change them to test on your own data.
+  
+  
+### 2.Usage
+  After Set the Parameters, we can proceed and run the script:
+  
+  ```python
+    $ python tensorflow_video
+  ```
 You will see some Terminal Output like:
 
 ![alt tag](https://github.com/DrewNF/Tensorflow_VID_Video_Object_Tracking/blob/master/terminal_output_run.png)
