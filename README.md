@@ -34,7 +34,7 @@ $ python tensorflow_video
 
 You will see some Terminal Output like:
 
-![alt tag](Tensorflow_VID_Video_Object_Tracking/terminal_output_run.png )
+![alt tag](https://github.com/DrewNF/Tensorflow_VID_Video_Object_Tracking/blob/master/terminal_output_run.png)
 
 
 
