@@ -15,12 +15,14 @@ My project use many online tensorflow projects, as:
   - TensorBox (https://github.com/Russell91/TensorBox).
 
 [Now state of the Project]
+
   - Support only YOLO DET Algorithm;
   - Not support Training;
   - Not use of Temporal & Context Information;
   - Working on adapt TensorBox and GoogleNet in Cascade,to support Training and achive better accuracy;
 
 [Script Usage]
+
 To Run the script you have to had installed:
   - Tensorflow;
   - OpenCV;
@@ -28,9 +30,11 @@ To Run the script you have to had installed:
 All the Python library necessary could be installed easily trought pip install package_name.
 To Test the script you have to open a Terminal window, go to the Repository directory and tape:
 
-python tensorflow_video
+$ python tensorflow_video
 
 You will see some Terminal Output like:
+
+![alt tag](Tensorflow_VID_Video_Object_Tracking/terminal_output_run.png )
 
 
 
