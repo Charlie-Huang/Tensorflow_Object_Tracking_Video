@@ -30,11 +30,15 @@ To Run the script you have to had installed:
 All the Python library necessary could be installed easily trought pip install package_name.
 To Test the script you have to open a Terminal window, go to the Repository directory and tape:
 
-$ python tensorflow_video
+  $ python tensorflow_video
 
 You will see some Terminal Output like:
 
 ![alt tag](https://github.com/DrewNF/Tensorflow_VID_Video_Object_Tracking/blob/master/terminal_output_run.png)
+
+You will see frames output in realtime (like the one here below) and then finally they all will be embedded into the Video Output:
+
+![alt tag](https://github.com/DrewNF/Tensorflow_VID_Video_Object_Tracking/blob/master/DET_frame_example.jpg)
 
 
 
