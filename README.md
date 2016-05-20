@@ -43,6 +43,7 @@ To Test the script you have to open a Terminal window, go to the Repository dire
     file_path_summary_result=folder_path_summary_result+'results.txt'
     path_video='input_video.mp4'
     path_video_out='output_video.mp4'
+    video_perc=100
   ```
     
     
