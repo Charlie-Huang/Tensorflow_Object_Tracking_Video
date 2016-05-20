@@ -47,6 +47,7 @@ To Test the script you have to open a Terminal window, go to the Repository dire
   ```
   
   Leave them as set, if you want to only try a run, otherwise you can change them to test on your own data.
+  
   Now you have to download the weights for YOLO(from here: https://drive.google.com/file/d/0B2JbaJSrWLpza08yS2FSUnV2dlE/view?usp=sharing ) and put them into /YOLO_DET_Alg/weights/.
   For YOLO knowledge here: http://pjreddie.com/darknet/yolo/ you can find Original code(C implementation) & paper.
   
