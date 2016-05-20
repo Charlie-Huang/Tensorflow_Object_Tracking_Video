@@ -4,7 +4,7 @@
 
 ## 1.Introduction
 
-This Repository is my Master Thesis Project: "Develop a Video Object Detection with Tensorflow Technology" 
+This Repository is my Master Thesis Project: "Develop a Video Object Tracking with Tensorflow Technology" 
 and it's still developing, so many updates will be made.
 In this work, I used the architecture and problem solving strategy of the Paper T-CNN(Arxiv, http://arxiv.org/abs/1604.02532), that won last year IMAGENET 2015 (http://image-net.org/) Teaser Challenge VID (http://image-net.org/challenges/LSVRC/2015/results).
 So the whole script architecture will be made of several component in cascade:
@@ -45,10 +45,10 @@ To Test the script you have to open a Terminal window, go to the Repository dire
     path_video_out='output_video.mp4'
     video_perc=100
   ```
-    
-    
-  Leave them as set, if you want to only try a run, otherwise you can change them to test on your own data.
   
+  Leave them as set, if you want to only try a run, otherwise you can change them to test on your own data.
+  Now you have to download the weights for YOLO(from here: https://drive.google.com/file/d/0B2JbaJSrWLpza08yS2FSUnV2dlE/view?usp=sharing ) and put them into /YOLO_DET_Alg/weights/.
+  For YOLO knowledge here: http://pjreddie.com/darknet/yolo/ you can find Original code(C implementation) & paper.
   
 ### Usage
   After Set the Parameters, we can proceed and run the script:
