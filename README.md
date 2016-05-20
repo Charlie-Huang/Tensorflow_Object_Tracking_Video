@@ -56,7 +56,7 @@ To Test the script you have to open a Terminal window, go to the Repository dire
   After Set the Parameters, we can proceed and run the script:
   
   ```python
-    python tensorflow_video
+    python tensorflow_video.py
   ```
 You will see some Terminal Output like:
 
