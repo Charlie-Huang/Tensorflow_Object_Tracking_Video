@@ -82,8 +82,8 @@ The first one has problems in the frames order, this is why you will see so much
 
 According to the LICENSE file of the original code,
 
-  - Me and original author hold no liability for any damages
-  - Do not use this on commercial!
+  - Me and original author hold no liability for any damages;
+  - Do not use this on commercial!.
 
 ## 5.State of the Project
 
