@@ -39,8 +39,9 @@ To Run the script you have to had installed:
   - OpenCV;
   - Python;
 
-All the Python library necessary could be installed easily trought pip install package_name.
-To Test the script you have to open a Terminal window, go to the Repository directory and tape:
+All the Python library necessary could be installed easily trought pip install package-name.
+If you want to follow a guide to install the requirements here is the link for a tutorial I wrote for myself:
+https://github.com/DrewNF/Build-Research-Envirorment-with-Tensorflow-OpenCV-Python/blob/master/README.md
 
 ## 3.Script Usage
 ### i.Setting Parameters
