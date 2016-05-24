@@ -43,7 +43,7 @@ All the Python library necessary could be installed easily trought pip install p
 To Test the script you have to open a Terminal window, go to the Repository directory and tape:
 
 ## 3.Script Usage
-### Setting Parameters
+### i.Setting Parameters
   Into the script file, at the start, you will found this paragraph:
         
   ```python      
@@ -63,7 +63,7 @@ To Test the script you have to open a Terminal window, go to the Repository dire
   
   For YOLO knowledge here: http://pjreddie.com/darknet/yolo/ you can find Original code(C implementation) & paper.
   
-### Usage
+### ii.Usage
   After Set the Parameters, we can proceed and run the script:
   
   ```python
