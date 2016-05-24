@@ -2,6 +2,17 @@
 
 (Version 0.1, Last Update 20-05-2016)
 
+The Project  follow the below **index**:
+
+1. **Introduction to the Problem;**
+2. **Requitements & Installation;**
+3. **Script Usage**
+      1. **Setting Parameters;**
+      2. **Usage.**
+4. **Copyright.**
+5. **State of the Project.**
+
+
 ## 1.Introduction
 
 This Repository is my Master Thesis Project: "Develop a Video Object Tracking with Tensorflow Technology" 
