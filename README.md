@@ -41,7 +41,7 @@ To Run the script you have to had installed:
 
 All the Python library necessary could be installed easily trought pip install package-name.
 If you want to follow a guide to install the requirements here is the link for a tutorial I wrote for myself:
-https://github.com/DrewNF/Build-Research-Envirorment-with-Tensorflow-OpenCV-Python/blob/master/README.md
+https://github.com/DrewNF/Build-Research-Envirorment-with-Tensorflow-OpenCV-Python
 
 ## 3.Script Usage
 ### i.Setting Parameters
