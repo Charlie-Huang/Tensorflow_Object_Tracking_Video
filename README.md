@@ -2,6 +2,10 @@
 
 (Version 0.1, Last Update 20-05-2016)
 
+![alt text](images/UPC_logo.png "Logo Title Text 1")
+![alt text](images/BSC_logo.png "Logo Title Text 1")
+![alt text](images/IGP_logo.png  "Logo Title Text 1")
+
 The Project  follow the below **index**:
 
 1. **Introduction to the Problem;**
@@ -72,12 +76,12 @@ https://github.com/DrewNF/Build-Research-Envirorment-with-Tensorflow-OpenCV-Pyth
   ```
 You will see some Terminal Output like:
 
-![alt tag](https://github.com/DrewNF/Tensorflow_VID_Video_Object_Tracking/blob/master/terminal_output_run.png)
+![alt tag](images/terminal_output_run.png)
 
 You will see a realtime frames output(like the one here below) and then finally all will be embedded into the Video Output( I uploaded the first two Test I've made in the folder /video_result, you can download them and take a look to the final result.
 The first one has problems in the frames order, this is why you will see so much flickering in the video image,the problem was then solved and in the second doesn't show frames flickering ):
 
-![alt tag](https://github.com/DrewNF/Tensorflow_VID_Video_Object_Tracking/blob/master/DET_frame_example.jpg)
+![alt tag](images/DET_frame_example.jpg)
 
 ## 4.Copyright
 
