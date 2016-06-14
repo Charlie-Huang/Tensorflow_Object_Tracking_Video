@@ -8,16 +8,16 @@
 
 The Project  follow the below **index**:
 
-1. **[Introduction to the Problem]();**
-2. **[Requitements & Installation]();**
-3. **[YOLO Script Usage]()**
-      1. **[Setting Parameters]();**
-      2. **[Usage]().*]
+1. **[Introduction](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#1introduction);**
+2. **[Requitements & Installation](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#2requirement--installation);**
+3. **[YOLO Script Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#3yolo-script-usage)**
+      1. **[Setting Parameters](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#isetting-parameters);**
+      2. **[Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#iiusage).**
 4. **[TENSORBOX Script Usage]()**
       1. **[Setting Parameters]();**
-      2. **[Usage]().*]
-5. **[Copyright]();**
-6.  **[State of the Project]().**
+      2. **[Usage]().**
+5. **[Copyright](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#5copyright);**
+6.  **[State of the Project](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#6state-of-the-project).**
 
 
 ## 1.Introduction
@@ -85,14 +85,19 @@ The first one has problems in the frames order, this is why you will see so much
 
 ![alt tag](images/DET_frame_example.jpg)
 
-## 4.Copyright
+## 4.TENSORBOX Script Usage
+### i.Setting Parameters
+  
+### ii.Usage
+
+## 5.Copyright
 
 According to the LICENSE file of the original code,
 
   - Me and original author hold no liability for any damages;
   - Do not use this on commercial!.
 
-## 5.State of the Project
+## 6.State of the Project
 
   - Support only YOLO DET Algorithm;
   - Not support Training;
