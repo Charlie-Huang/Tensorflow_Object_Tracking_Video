@@ -1,6 +1,6 @@
-# Tensorflow_VID_Video_Object_Tracking
+# Tensorflow_Object_Tracking_Video
 
-(Version 0.1, Last Update 20-05-2016)
+(Version 0.1, Last Update 14-06-2016)
 
 ![alt text](images/UPC_logo.png "Logo Title Text 1")
 ![alt text](images/BSC_logo.png "Logo Title Text 1")
@@ -8,20 +8,23 @@
 
 The Project  follow the below **index**:
 
-1. **Introduction to the Problem;**
-2. **Requitements & Installation;**
-3. **Script Usage**
-      1. **Setting Parameters;**
-      2. **Usage.**
-4. **Copyright.**
-5. **State of the Project.**
+1. **[Introduction to the Problem]();**
+2. **[Requitements & Installation]();**
+3. **[YOLO Script Usage]()**
+      1. **[Setting Parameters]();**
+      2. **[Usage]().*]
+4. **[TENSORBOX Script Usage]()**
+      1. **[Setting Parameters]();**
+      2. **[Usage]().*]
+5. **[Copyright]();**
+6.  **[State of the Project]().**
 
 
 ## 1.Introduction
 
 This Repository is my Master Thesis Project: "Develop a Video Object Tracking with Tensorflow Technology" 
 and it's still developing, so many updates will be made.
-In this work, I used the architecture and problem solving strategy of the Paper T-CNN(Arxiv, http://arxiv.org/abs/1604.02532), that won last year IMAGENET 2015 (http://image-net.org/) Teaser Challenge VID (http://image-net.org/challenges/LSVRC/2015/results).
+In this work, I used the architecture and problem solving strategy of the Paper T-CNN([Arxiv](http://arxiv.org/abs/1604.02532)), that won last year [IMAGENET 2015](http://image-net.org/) [Teaser Challenge VID](http://image-net.org/challenges/LSVRC/2015/results).
 So the whole script architecture will be made of several component in cascade:
   1. Still Image Detection (Return Tracking Results on single Frame);
   2. Temporal Information Detection( Introducing Temporal Information into the DET Results);
@@ -33,8 +36,8 @@ So the whole script architecture will be made of several component in cascade:
 
 
 My project use many online tensorflow projects, as: 
-  - YOLO Tensorflow (https://github.com/gliese581gg/YOLO_tensorflow);
-  - TensorBox (https://github.com/Russell91/TensorBox).
+  - [YOLO Tensorflow](https://github.com/gliese581gg/YOLO_tensorflow);
+  - [TensorBox](https://github.com/Russell91/TensorBox).
 
 ## 2.Requirement & Installation
 To install the script you only need to download the Repository.
@@ -44,10 +47,9 @@ To Run the script you have to had installed:
   - Python;
 
 All the Python library necessary could be installed easily trought pip install package-name.
-If you want to follow a guide to install the requirements here is the link for a tutorial I wrote for myself:
-https://github.com/DrewNF/Build-Research-Envirorment-with-Tensorflow-OpenCV-Python
+If you want to follow a guide to install the requirements here is the link for a [tutorial](https://github.com/DrewNF/Build-Deep-Learning-Env-with-Tensorflow-Python-OpenCV) I wrote for myself.
 
-## 3.Script Usage
+## 3.YOLO Script Usage
 ### i.Setting Parameters
   Into the script file, at the start, you will found this paragraph:
         
@@ -64,9 +66,9 @@ https://github.com/DrewNF/Build-Research-Envirorment-with-Tensorflow-OpenCV-Pyth
   
   Leave them as set, if you want to only try a run, otherwise you can change them to test on your own data.
   
-  Now you have to download the weights for YOLO(from here: https://drive.google.com/file/d/0B2JbaJSrWLpza08yS2FSUnV2dlE/view?usp=sharing ) and put them into /YOLO_DET_Alg/weights/.
+  Now you have to download the [weights](https://drive.google.com/file/d/0B2JbaJSrWLpza08yS2FSUnV2dlE/view?usp=sharing ) for YOLO and put them into /YOLO_DET_Alg/weights/.
   
-  For YOLO knowledge here: http://pjreddie.com/darknet/yolo/ you can find Original code(C implementation) & paper.
+  For YOLO knowledge [here](http://pjreddie.com/darknet/yolo/) you can find Original code(C implementation) & paper.
   
 ### ii.Usage
   After Set the Parameters, we can proceed and run the script:
