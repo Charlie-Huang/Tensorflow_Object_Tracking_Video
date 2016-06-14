@@ -13,7 +13,7 @@ The Project  follow the below **index**:
 3. **[YOLO Script Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#3yolo-script-usage)**
       1. **[Setting Parameters](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#isetting-parameters);**
       2. **[Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#iiusage).**
-4. **[TENSORBOX Script Usage]()**
+4. **[TENSORBOX SINGLE_CLASS Script Usage]()**
       1. **[Setting Parameters]();**
       2. **[Usage]().**
 5. **[Copyright](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#5copyright);**
@@ -85,7 +85,7 @@ The first one has problems in the frames order, this is why you will see so much
 
 ![alt tag](images/DET_frame_example.jpg)
 
-## 4.TENSORBOX Script Usage
+## 4.TENSORBOX SINGLE_CLASS Script Usage
 ### i.Setting Parameters
   
 ### ii.Usage
