@@ -180,11 +180,11 @@ def still_image_TENSORBOX(idl_filename, frames_list):
         
             new_img, rects = add_rectangles(H, [img], np_pred_confidences, np_pred_boxes,H["arch"], use_stitching=True, rnn_len=H['arch']['rnn_len'], min_conf=0.5)
             pred_anno.rects = rects
+            bb_img = Image.open(frames_list[i])
             for bb_rect in rects:
             ################ Adding Rectangle ###################
-                bb_img = Image.open(frames_list[i])
                 dr = ImageDraw.Draw(bb_img)
-                cor = (bb_rect.bottom(),bb_rect.top(),bb_rect.left() ,bb_rect.right()) # DA VERIFICARE Try_2 (x1,y1, x2,y2) cor = (bb_rect.left() ,bb_rect.right(),bb_rect.bottom(),bb_rect.top()) Try_1
+                cor = (bb_rect.x1,bb_rect.y1,bb_rect.x2 ,bb_rect.y2 # DA VERIFICARE Try_2 (x1,y1, x2,y2) cor = (bb_rect.left() ,bb_rect.right(),bb_rect.bottom(),bb_rect.top()) Try_1
                 dr.rectangle(cor, outline="red")
                 bb_img_det_name = frames_list[i].replace(folder_path_frames,folder_path_det_frames)
                 bb_img.save(bb_img_det_name)

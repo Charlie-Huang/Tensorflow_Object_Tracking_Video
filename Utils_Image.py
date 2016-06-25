@@ -56,7 +56,7 @@ def getpadd_Image(file_path, size_0, size_1):
     #Get Padd of the image
 
     image = Image.open(file_path)
-    image.thumbnail((size_0,size_1)), Image.ANTIALIAS)
+    image.thumbnail((size_0,size_1), Image.ANTIALIAS)
     image_size = image.size
 
     padding[0] = max( (size_0 - image_size[0]) / 2, 0 )
