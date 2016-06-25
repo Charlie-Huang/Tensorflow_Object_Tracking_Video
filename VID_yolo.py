@@ -8,6 +8,9 @@ import progressbar
 import pandas
 import sys
 
+import Utils_Image
+import Utils_Video
+
 # Import DET Alg package
 sys.path.insert(0, 'YOLO_DET_Alg')
 import YOLO_small_tf
@@ -34,29 +37,6 @@ path_video='ILSVRC2015_val_00013002.mp4'
 path_video_out='test.mp4'
 video_perc=5
 
-########## FUNCTIONS
-
-def extract_frames(vid_path, video_perc):
-        list=[]
-        frames=[]
-        # Opening & Reading the Video
-        print("Opening File Video:%s " % vid_path)
-        vidcap = cv2.VideoCapture(vid_path)
-        if not vidcap.isOpened():
-            print "could Not Open :",vid_path
-            return
-        print("Opened File Video:%s " % vid_path)
-        print("Start Reading File Video:%s " % vid_path)
-        image = vidcap.read()
-        total = int((vidcap.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT)/100)*video_perc)
-        print("%d Frames to Read"%total)
-        progress = progressbar.ProgressBar(widgets=[progressbar.Bar('=', '[', ']'), ' ',progressbar.Percentage(), ' ',progressbar.ETA()])
-        for i in progress(range(0,total)):
-            list.append("frame%d.jpg" % i)
-            frames.append(image)
-            image = vidcap.read()
-        print("Finish Reading File Video:%s " % vid_path)
-        return frames, list
 
 def still_image_YOLO_DET(frames_list, frames_name):
     print("Starting DET Phase")
@@ -89,32 +69,6 @@ def still_image_YOLO_DET(frames_list, frames_name):
         yolo.detect_from_cvmat(frames_list[i][1])
     return det_frames_list,det_result_list
 
-#def make_video_from_frames(out_vid_path, frames):
-#    h, w = frames[0].shape[:2]
-#    fourcc = cv2.cv.CV_FOURCC('m', 'p', '4', 'v')
-#    out = cv2.VideoWriter(out_vid_path,fourcc, 20.0, (w, h), True)
-#    print("Start Making File Video:%s " % out_vid_path)
-#    print("%d Frames to Compress"%len(frames))
-#    progress = progressbar.ProgressBar(widgets=[progressbar.Bar('=', '[', ']'), ' ',progressbar.Percentage(), ' ',progressbar.ETA()])
-#    for i in progress(range(0,len(frames))):
-#        out.write(frames[i])
-#    out.release()
-#    print("Finished Making File Video:%s " % out_vid_path)
-
-def make_video_from_list(out_vid_path, frames_list):
-    img = cv2.imread(frames_list[0], True)
-    h, w = img.shape[:2]
-    fourcc = cv2.cv.CV_FOURCC('m', 'p', '4', 'v')
-    out = cv2.VideoWriter(out_vid_path,fourcc, 20.0, (w, h), True)
-    print("Start Making File Video:%s " % out_vid_path)
-    print("%d Frames to Compress"%len(frames_list))
-    progress = progressbar.ProgressBar(widgets=[progressbar.Bar('=', '[', ']'), ' ',progressbar.Percentage(), ' ',progressbar.ETA()])
-    for i in progress(range(0,len(frames_list))):
-        out.write(img)
-        img = cv2.imread(frames_list[i], True)
-    out.release()
-    print("Finished Making File Video:%s " % out_vid_path)
-    return
 
 def print_YOLO_DET_result(det_results_list):
     results_list=[]
@@ -146,9 +100,9 @@ def print_YOLO_DET_result(det_results_list):
 
 start = time.time()
 
-frames, frame_list = extract_frames(path_video, video_perc)
+frames, frame_list = Utils_Video.extract_frames(path_video, video_perc)
 det_frame_list,det_result_list=still_image_YOLO_DET(frames, frame_list)
-make_video_from_list(path_video_out, det_frame_list)
+Utils_Video.make_video_from_list(path_video_out, det_frame_list)
 end = time.time()
 print_YOLO_DET_result(det_result_list)
 print("Elapsed Time:%d Seconds"%(end-start))
