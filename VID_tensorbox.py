@@ -208,7 +208,7 @@ progress = progressbar.ProgressBar(widgets=[progressbar.Bar('=', '[', ']'), ' ',
 
 
 for image_path in progress(frame_list):
-    Utils_Image.resizeImage6448(image_path)
+    Utils_Image.resizeImage(image_path)
 
 det_frame_list=still_image_TENSORBOX(idl_filename, frame_list)
 
