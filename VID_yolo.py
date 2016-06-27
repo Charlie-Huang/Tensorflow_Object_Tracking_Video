@@ -8,7 +8,6 @@ import progressbar
 import pandas
 import sys
 
-import Utils_Image
 import Utils_Video
 
 # Import DET Alg package

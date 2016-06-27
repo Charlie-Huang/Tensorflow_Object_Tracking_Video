@@ -24,25 +24,25 @@ class BB_Rectangle(object):
 
     def get_label_string(self):
         """Get the string of the label of the rect."""
+        string=""
         if self.label is not None:
             string=self.label +' '
-        else: string=""
         return string
 
 
     def get_code_string(self):
         """Get the string of the label of the rect."""
+        string=""
         if self.label_code is not None:
             string=self.label_code +' '
-        else: string=""
         return string
 
 
     def get_chall_string(self):
         """Get the string of the label of the rect."""
+        string=""
         if self.label_chall is not None:
             string=str(self.label_chall) +' '
-        else: string=""
         return string
     
     def get_coord_string(self):
@@ -52,10 +52,9 @@ class BB_Rectangle(object):
 
     def get_rect_string(self):
         """Get the string of the infos of the rect."""
+        string='('+str(self.x1)+','+str(self.y1)+','+str(self.x2)+','+str(self.y2)+')'
         if self.label_chall is not None:
-            string='('+str(self.x1)+','+str(self.y1)+','+str(self.x2)+','+str(self.y2)+') /' + str(self.label_chall) 
-        else: 
-            string='('+str(self.x1)+','+str(self.y1)+','+str(self.x2)+','+str(self.y2)+')'
+            string=string+' /' + str(self.label_chall) 
         return string
 
 
@@ -68,6 +67,9 @@ class Picture_Info(object):
         self.filename=''
         self.dataset_path=''
         self.default_path=''
+        self.width=-1
+        self.height=-1
+        self.frame=-1
     
     def append_rect(self, rectangle):
         """Adding rect to the picture_info."""
@@ -75,108 +77,69 @@ class Picture_Info(object):
         index= len(self.rects)
         self.rects.insert(index, rect)
 
-    def get_rects_string(self, new_path):
+    def get_rects_string(self):
         """Get the string of the coordinates of all the rects of the image."""
-        if new_path is True:
-            #string='"'+self.dataset_path+self.folder+'/image/'+self.filename+'": ' #Server
-            string='"'+self.dataset_path+'/'+self.rects[0].label+'/'+self.folder+'/'+self.filename+'": ' #Standalone
-            n_obj=len(self.rects)
-            for rectangle in self.rects:
-                string = string + rectangle.get_rect_string()
-                n_obj=n_obj-1
-                if n_obj>0:
-                    string= string + ','
-                else: string= string + ';'
-            #print "Single" + string
-        elif new_path is False: 
-            #string='"'+self.dataset_path+self.folder+'/image/'+self.filename+'": ' #Server
-            string='"'+self.default_path+'/'+self.filename+'": ' #Standalone
-            n_obj=len(self.rects)
-            for rectangle in self.rects:
-                string = string + rectangle.get_rect_string()
-                if n_obj>0:
-                    string= string + ','
-                else: string= string + ';'
-            #print "Multiple" + string
+        string='"'+self.dataset_path+'/'+self.folder+'/'+self.filename+'"' 
+        if self.frame is not -1:
+      	   string= string+ ' @'+ str(self.frame)
+      	string=string+' : '
+        n_obj=len(self.rects)
+        for rectangle in self.rects:
+            string = string + rectangle.get_rect_string()
+            n_obj=n_obj-1
+            if n_obj>0:
+                string= string + ','
+            else: string= string + ';'
         return string
 
-    def get_rects_labels(self, new_path):
+    def get_rects_labels(self):
         """Get the string of the coordinates of all the rects of the image."""
         
-        if new_path is True:
-            #string='"'+self.dataset_path+self.folder+'/image/'+self.filename+'": ' #Server
-            string='"'+self.dataset_path+'/'+self.rects[0].label+'/'+self.folder+'/'+self.filename+'": ' #Standalone
-            n_obj=len(self.rects)
-            for rectangle in self.rects:
-                string = string + rectangle.get_label_string()
-                n_obj=n_obj-1
-                if n_obj>0:
-                    string= string + ','
-                else: string= string + ';'
-            # print "len"+str(len(self.rects))+string
-        elif new_path is False: 
-            #string='"'+self.dataset_path+self.folder+'/image/'+self.filename+'": ' #Server
-            string='"'+self.default_path+'/'+self.filename+'": ' #Standalone
-            n_obj=len(self.rects)
-            for rectangle in self.rects:
-                string = string + rectangle.get_label_string()
-                n_obj=n_obj-1
-                if n_obj>0:
-                    string= string + ','
-                else: string= string + ';'
-            # print "len"+str(len(self.rects))+string
+        string='"'+self.dataset_path+'/'+self.folder+'/'+self.filename+'"'
+        if self.frame is not -1:
+      	   string= string+ ' @'+ str(self.frame)
+      	string=string+' : '
+        n_obj=len(self.rects)
+        for rectangle in self.rects:
+            string = string + rectangle.get_label_string()
+            n_obj=n_obj-1
+            if n_obj>0:
+                string= string + ','
+            else: string= string + ';'
         return string
 
-    def get_rects_code(self, new_path):
+    def get_rects_code(self):
         """Get the string of the coordinates of all the rects of the image."""
-        if new_path is True:
-            #string='"'+self.dataset_path+self.folder+'/image/'+self.filename+'": ' #Server
-            string='"'+self.dataset_path+'/'+self.rects[0].label+'/'+self.folder+'/'+self.filename+'": ' #Standalone
-            n_obj=len(self.rects)
-            for rectangle in self.rects:
-                string = string + rectangle.get_code_string()
-                n_obj=n_obj-1
-                if n_obj>0:
-                    string= string + ','
-                else: string= string + ';'
-        elif new_path is False: 
-            #string='"'+self.dataset_path+self.folder+'/image/'+self.filename+'": ' #Server
-            string='"'+self.default_path+'/'+self.filename+'": ' #Standalone
-            n_obj=len(self.rects)
-            for rectangle in self.rects:
-                string = string + rectangle.get_code_string()
-                n_obj=n_obj-1
-                if n_obj>0:
-                    string= string + ','
-                else: string= string + ';'
+        string='"'+self.dataset_path+'/'+self.folder+'/'+self.filename+'"'
+        if self.frame is not -1:
+      	   string= string+ ' @'+ str(self.frame)
+      	string=string+' : '
+        n_obj=len(self.rects)
+        for rectangle in self.rects:
+            string = string + rectangle.get_code_string()
+            n_obj=n_obj-1
+            if n_obj>0:
+                string= string + ','
+            else: string= string + ';'
         return string
 
-    def get_rects_chall(self, new_path):
+    def get_rects_chall(self):
         """Get the string of the coordinates of all the rects of the image."""
-        if new_path is True:
-            #string='"'+self.dataset_path+self.folder+'/image/'+self.filename+'": ' #Server
-            string='"'+self.dataset_path+'/'+self.rects[0].label+'/'+self.folder+'/'+self.filename+'": ' #Standalone
-            n_obj=len(self.rects)
-            for rectangle in self.rects:
-                string = string + rectangle.get_chall_string()
-                n_obj=n_obj-1
-                if n_obj>0:
-                    string= string + ','
-                else: string= string + ';'
-        elif new_path is False: 
-            #string='"'+self.dataset_path+self.folder+'/image/'+self.filename+'": ' #Server
-            string='"'+self.default_path+'/'+self.filename+'": ' #Standalone
-            n_obj=len(self.rects)
-            for rectangle in self.rects:
-                string = string + rectangle.get_chall_string()
-                n_obj=n_obj-1
-                if n_obj>0:
-                    string= string + ','
-                else: string= string + ';'
+        string='"'+self.dataset_path+'/'+self.folder+'/'+self.filename+'"'
+        if self.frame is not -1:
+      	   string= string+ ' @'+ str(self.frame)
+      	string=string+' : '
+        n_obj=len(self.rects)
+        for rectangle in self.rects:
+            string = string + rectangle.get_chall_string()
+            n_obj=n_obj-1
+            if n_obj>0:
+                string= string + ','
+            else: string= string + ';'
         return string
 
-    def get_info_string(self, new_path):
+    def get_info_string(self):
         """Get the string of the infos of the image."""
-        return self.get_rects_string(new_path)
+        return self.get_rects_string()
 
 

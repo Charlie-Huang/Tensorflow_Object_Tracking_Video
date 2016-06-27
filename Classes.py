@@ -1,3 +1,5 @@
+####DEFINE COLOR SWITCH
+
 def code_to_class_string(argument):
     switcher = {
                     'n02691156': "airplane",
@@ -65,6 +67,41 @@ def class_string_to_comp_code(argument):
                     'whale': 29,
                     'zebra': 30                 }
     return switcher.get(argument, "nothing")
+
+# def class_string_to_color(argument):
+#     switcher = {
+#                     'airplane': 1,
+#                     'antelope': 2,
+#                     'bear': 3,
+#                     'bicycle': 4,
+#                     'bird': 5,
+#                     'bus': 6,
+#                     'car': 7,
+#                     'cattle': 8,
+#                     'dog': 9,
+#                     'domestic_cat': 10,
+#                     'elephant': 11,
+#                     'fox': 12,
+#                     'giant_panda': 13,
+#                     'hamster': 14,
+#                     'horse': 15,
+#                     'lion': 16,
+#                     'lizard': 17,
+#                     'monkey': 18,
+#                     'motorcycle': 19,
+#                     'rabbit': 20,
+#                     'red_panda': 21,
+#                     'sheep': 22,
+#                     'snake': 23,
+#                     'squirrel': 24,
+#                     'tiger': 25,
+#                     'train': 26,
+#                     'turtle': 27,
+#                     'watercraft': 28,
+#                     'whale': 29,
+#                     'zebra': 30                 }
+#     return switcher.get(argument, "nothing")
+
 
 class Classes_List(object):
         
