@@ -33,9 +33,9 @@ path_dataset='./dataset'
 
 path_default_images_folder='image'
 
-path_bb_folder = './Annotations/VID/train'
+path_bb_folder = './Annotations/VID/val'
 
-path_val_folder = './Data/VID/train'
+path_val_folder = './Data/VID/val'
 
 ##### GENERAL FUNCTIONS
 
@@ -133,7 +133,6 @@ for file_name in progress(bb_list):
                 
                 image_multi_class= Picture_Info()
                 image_multi_class.dataset_path= path_val_folder
-                image_multi_class.frame= int(file_name.replace('.xml', ''))
 
                 rectangle_multi= BB_Rectangle()
                 
@@ -159,6 +158,9 @@ for file_name in progress(bb_list):
 
                     if tag in ["height"]:
                         image_multi_class.height= int(node.text)
+
+                    if tag in ["trackid"]:
+                        image_multi_class.frame= int(os.path.basename(file_name).replace('.xml', ''))
 
                     if tag in ['name']:
                         if str(Classes.code_to_class_string(str(node.text))) in ["nothing"]:
@@ -258,10 +260,12 @@ for class_name in CL.class_name_string_list:
                             image_single_class.height= int(node.text)
 
                     	if tag in ["trackid"]:
-                            image_single_class.frame= int(node.text)
+                            image_single_class.frame= int(os.path.basename(file_name).replace('.xml', ''))
 
                         if tag in ['name']:
-                            if str(Classes.code_to_class_string(str(node.text))) in ["nothing"] or str(Classes.code_to_class_string(str(node.text))) is not class_name:
+                            if str(Classes.code_to_class_string(str(node.text))) in ["nothing"]: 
+                                jump = 1
+                            if str(Classes.code_to_class_string(str(node.text))) is not class_name:
                                 jump = 1
                             else : 
                                 jump=0
@@ -271,17 +275,17 @@ for class_name in CL.class_name_string_list:
                                 
 	                if tag in ["xmax"]:
 	                    if jump == 0:
-	                        rectangle_multi.x2=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text),True))
+	                        rectangle_single.x2=float(Utils_Image.transform_point(image_single_class.width,image_single_class.height,width, height,float(node.text),True))
 	                if tag in ["xmin"]:
 	                    if jump == 0:
-	                        rectangle_multi.x1=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text),True))
+	                        rectangle_single.x1=float(Utils_Image.transform_point(image_single_class.width,image_single_class.height,width, height,float(node.text),True))
 	                if tag in ["ymax"]:
 	                    if jump == 0:
-				rectangle_multi.y2=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text),False))      
+				rectangle_single.y2=float(Utils_Image.transform_point(image_single_class.width,image_single_class.height,width, height,float(node.text),False))      
 			if tag in ["ymin"]:
 	                    if jump == 0:    
-	                        rectangle_multi.y1=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text),False))
-	                        image_multi_class.append_rect(rectangle_multi)
+	                        rectangle_single.y1=float(Utils_Image.transform_point(image_single_class.width,image_single_class.height,width, height,float(node.text),False))
+	                        image_single_class.append_rect(rectangle_single)
 	                        count_rect=count_rect+1
 
                     if jump == 0:

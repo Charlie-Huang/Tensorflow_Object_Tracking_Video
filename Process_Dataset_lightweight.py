@@ -1,8 +1,5 @@
 
 
-
-
-
 from xml.etree import ElementTree
 import os
 import shutil
@@ -151,15 +148,13 @@ for file_name in progress(bb_list):
                 offset_y = 0
                 jump=0
                 
-                rectangles_single= Picture_Info()
-                rectangles_single.dataset_path= path_dataset
-                rectangles_single.folder=path_default_images_folder
-                rectangles_single.default_path=path_val_folder
+                image_single_class= Picture_Info()
+                image_single_class.dataset_path= path_dataset
+                image_single_class.default_path=path_val_folder
 
-                rectangles_multi= Picture_Info()
-                rectangles_multi.dataset_path= path_dataset
-                rectangles_multi.folder=path_default_images_folder
-                rectangles_multi.default_path=path_val_folder
+                image_multi_class= Picture_Info()
+                image_multi_class.dataset_path= path_dataset
+                image_multi_class.default_path=path_val_folder
 
 
                 rectangle_single= BB_Rectangle()
@@ -177,8 +172,8 @@ for file_name in progress(bb_list):
                         #path_orig_file=path_orig_file+'/'+str(node.text)
 
                     if tag in ["filename"]:
-                        rectangles_single.filename=str(node.text)+'.PNG'
-                        rectangles_multi.filename=str(node.text)+'.PNG'
+                        image_single_class.filename=str(node.text)+'.PNG'
+                        image_multi_class.filename=str(node.text)+'.PNG'
 
                         path_orig_file=path_orig_file+'/'+str(node.text)+'.JPEG'
                         path_new_file=path_new_file+'/'+str(node.text)+'.PNG'
@@ -203,54 +198,55 @@ for file_name in progress(bb_list):
                             
                     if tag in ["xmax"]:
                         if jump == 0:
-                            rectangle_multi.x2=float(float(node.text) + offset_x )
+                            rectangle_multi.x2=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text), False))
                             if same_label==1:
-                            	rectangle_single.x2=float(float(node.text) + offset_x )
+                                rectangle_single.x2=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text), False))
                     if tag in ["xmin"]:
                         if jump == 0:
-                            rectangle_multi.x1=float(float(node.text) + offset_x )
+                            rectangle_multi.x1=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text), False))
                             if same_label==1:
-                            	rectangle_single.x1=float(float(node.text) + offset_x )
+                            	rectangle_single.x1=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text), False))
                     if tag in ["ymax"]:
                         if jump == 0:
-                            rectangle_multi.y2=float(float(node.text) + offset_y )
-                            rectangles_multi.append_rect(rectangle_multi) 
+                            rectangle_multi.y2=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text), False))                            
+                            image_multi_class.append_rect(rectangle_multi) 
                             if same_label==1:
-                            	rectangle_single.y2=float(float(node.text) + offset_y )
-                            	rectangles_single.append_rect(rectangle_single) 
+                            	rectangle_single.y2=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text), False))
+                                image_single_class.append_rect(rectangle_single)
                                 same_label=0
                     if tag in ["ymin"]:
                         if jump == 0:    
-                            rectangle_multi.y1=float(float(node.text) + offset_y )
+                            rectangle_multi.y1=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text), False))
                             if same_label==1:
-                            	rectangle_single.y1=float(float(node.text) + offset_y )
+                            	rectangle_single.y1=float(Utils_Image.transform_point(image_multi_class.width,image_multi_class.height,width, height,float(node.text), False))
+
 
                 #shutil.copy2(path_orig_file, path_new_file)
                 
                 out_stream = open(path_bb_file, "a")
-                out_stream.write(rectangles_single.get_info_string(True)+ os.linesep)
+                out_stream.write(image_single_class.get_info_string(True)+ os.linesep)
                 
                 out_stream = open(path_class_code_file, "a")
-                out_stream.write(rectangles_single.get_rects_chall(True)+ os.linesep)
+                out_stream.write(image_single_class.get_rects_chall(True)+ os.linesep)
                 
                 out_stream = open(path_class_name_file, "a")
-                out_stream.write(rectangles_single.get_rects_labels(True)+ os.linesep)
+                out_stream.write(image_single_class.get_rects_labels(True)+ os.linesep)
                 
                 out_stream = open(path_chall_code_file, "a")
-                out_stream.write(rectangles_single.get_rects_code(True) + os.linesep)
+                out_stream.write(image_single_class.get_rects_code(True) + os.linesep)
                 
 
                 out_stream = open(path_mltcl_bb_file, "a")
-                out_stream.write(rectangles_multi.get_info_string(False)+ os.linesep)
+                out_stream.write(image_multi_class.get_info_string(False)+ os.linesep)
                 
                 out_stream = open(path_mltcl_class_code_file, "a")
-                out_stream.write(rectangles_multi.get_rects_code(False)+ os.linesep)
+                out_stream.write(image_multi_class.get_rects_code(False)+ os.linesep)
                 
                 out_stream = open(path_mltcl_class_name_file, "a")
-                out_stream.write(rectangles_multi.get_rects_labels(False)+ os.linesep)
+                out_stream.write(image_multi_class.get_rects_labels(False)+ os.linesep)
                 
                 out_stream = open(path_mltcl_chall_code_file, "a")
-                out_stream.write(rectangles_multi.get_rects_chall(False) + os.linesep)
+                out_stream.write(image_multi_class.get_rects_chall(False) + os.linesep)
 
                 break
 
