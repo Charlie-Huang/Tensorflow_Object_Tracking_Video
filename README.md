@@ -9,16 +9,16 @@
 The Project follow the below **index**:
 
 1. **[Introduction](#1introduction);**
-2. **[Requitements & Installation](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#2requirement--installation);**
-3. **[YOLO Script Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#3yolo-script-usage)**
-      1. **[Setting Parameters](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#isetting-parameters);**
-      2. **[Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#iiusage).**
-4. **[TENSORBOX SINGLE_CLASS Script Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#4tensorbox-single_class-script-usage)**
-      1. **[Setting Parameters](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#isetting-parameters-1);**
-      2. **[Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#iiusage-1).**
-5. **[Dataset Scripts](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#5dataset-script);**
-6. **[Copyright](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#6copyright);**
-7. **[State of the Project](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#7state-of-the-project).**
+2. **[Requitements & Installation](#2requirement--installation);**
+3. **[YOLO Script Usage](#3yolo-script-usage)**
+      1. **[Setting Parameters](#isetting-parameters);**
+      2. **[Usage](#iiusage).**
+4. **[TENSORBOX SINGLE_CLASS Script Usage](#4tensorbox-single_class-script-usage)**
+      1. **[Setting Parameters](#isetting-parameters-1);**
+      2. **[Usage](#iiusage-1).**
+5. **[Dataset Scripts](#5dataset-script);**
+6. **[Copyright](#6copyright);**
+7. **[State of the Project](#7state-of-the-project).**
 
 
 ## 1.Introduction
@@ -48,7 +48,7 @@ To Run the script you have to had installed:
   - Python;
 
 All the Python library necessary could be installed easily trought pip install package-name.
-If you want to follow a guide to install the requirements here is the link for a [tutorial](https://github.com/DrewNF/Build-Deep-Learning-Env-with-Tensorflow-Python-OpenCV) I wrote for myself.
+If you want to follow a guide to install the requirements here is the link for a [tutorial](https://github.com/DrewNF/Build-Deep-Learning-Env-with-Tensorflow-Python-OpenCV) I wrote for myself and for a course of Deep Learning at UPC.
 
 ## 3.YOLO Script Usage
 ### i.Setting Parameters
@@ -99,7 +99,8 @@ The first one has problems in the frames order, this is why you will see so much
     parser.add_argument('--perc', default=2, type=int)
     parser.add_argument('--path_video', required=True, type=str)
   ```
-
+  I will soon put a weight file to download.
+  Otherwise in the link below you can easily learn how to train TENSORBOX on you datset [here](##5dataset-script) some script to parse and prepare your dataset for the VID classes.
   For TENSORBOX knowledge [here](https://github.com/Russell91/TensorBox) you can find Original code(Tensorflow & Caffe implementation).
   
 ### ii.Usage
@@ -109,8 +110,12 @@ The first one has problems in the frames order, this is why you will see so much
     python VID_tensorbox.py --video.mp4
   ```
 ## 5.Dataset Scripts
-
-
+  All the scripts below are for the VID classes so if you wonna adapt them for other you have to simply change the Classes.py file where are defined the correspondencies between codes and names. All the data on the image are made respect a specific Image Ratio, because TENSORBOX works only with 640x480 PNG images, you will have to change the code a little to adapt to your needs.
+  I will provide four scripts:
+  1. Process_Dataset_heavy.py: Process your dataset with a brute force approach, you will obtain more bbox and files for each class;
+  2. Process_Dataset_lightweight.py: Process your dataset with a lightweight approach making, you will obtain less bbox and files for each class;
+  3. Resize_Dataset.py: Resize your dataset to 640x480 PNG images;
+  4. Test_Processed_Data.py: Will test that the process end well without errors.
 
 ## 6.Copyright
 
@@ -121,7 +126,6 @@ According to the LICENSE file of the original code,
 
 ## 7.State of the Project
 
-  - Support only YOLO DET Algorithm;
-  - Not support Training;
+  - Support both YOLO and TENSORBOX (SingleClass) DET Algorithm;
+  - Support Training **ONLY TENSOBOX Training**;
   - Not use of Temporal & Context Information;
-  - Working on adapt TensorBox and GoogleNet in Cascade,to support Training and achive better accuracy;
