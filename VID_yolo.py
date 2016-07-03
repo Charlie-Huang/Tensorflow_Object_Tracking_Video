@@ -7,7 +7,7 @@ import time
 import progressbar
 import pandas
 import sys
-
+import argparse
 import Utils_Video
 
 # Import DET Alg package
@@ -27,17 +27,7 @@ import YOLO_small_tf
 
 ########## SETTING PARAMETERS
 
-folder_path_det_frames='det_frames/'
-folder_path_det_result='det_results/'
-folder_path_summary_result='summary_result/'
-file_name_summary_result='results.txt'
-file_path_summary_result=folder_path_summary_result+'results.txt'
-path_video='ILSVRC2015_val_00013002.mp4'
-path_video_out='test.mp4'
-video_perc=5
-
-
-def still_image_YOLO_DET(frames_list, frames_name):
+def still_image_YOLO_DET(frames_list, frames_name, folder_path_det_frames,folder_path_det_result):
     print("Starting DET Phase")
     if not os.path.exists(folder_path_det_frames):
         os.makedirs(folder_path_det_frames)
@@ -52,6 +42,7 @@ def still_image_YOLO_DET(frames_list, frames_name):
     progress = progressbar.ProgressBar(widgets=[progressbar.Bar('=', '[', ']'), ' ',progressbar.Percentage(), ' ',progressbar.ETA()])
     for i in progress(range(0,len(frames_list))):
         # det_frame_name = frames_name[i]
+        #print frames_name[i]
         det_frame_name = frames_name[i].replace('.jpg','_det.jpg')
         det_frame_name = folder_path_det_frames + det_frame_name
         det_frames_list.append(det_frame_name)
@@ -69,7 +60,7 @@ def still_image_YOLO_DET(frames_list, frames_name):
     return det_frames_list,det_result_list
 
 
-def print_YOLO_DET_result(det_results_list):
+def print_YOLO_DET_result(det_results_list,folder_path_summary_result, file_path_summary_result ):
     results_list=[]
     if not os.path.exists(folder_path_summary_result):
         os.makedirs(folder_path_summary_result)
@@ -97,12 +88,36 @@ def print_YOLO_DET_result(det_results_list):
 
 ######### MAIN ###############
 
-start = time.time()
+def main():
+    '''
+    Parse command line arguments and execute the code
 
-frames, frame_list = Utils_Video.extract_frames(path_video, video_perc)
-det_frame_list,det_result_list=still_image_YOLO_DET(frames, frame_list)
-Utils_Video.make_video_from_list(path_video_out, det_frame_list)
-end = time.time()
-print_YOLO_DET_result(det_result_list)
-print("Elapsed Time:%d Seconds"%(end-start))
-print("Running Completed with Success!!!")
+    '''
+    start = time.time()
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--det_frames_folder', default='det_frames/', type=str)
+    parser.add_argument('--det_result_folder', default='det_results/', type=str)
+    parser.add_argument('--result_folder', default='summary_result/', type=str)
+    parser.add_argument('--summary_file', default='results.txt', type=str)
+    parser.add_argument('--output_name', default='output.mp4', type=str)
+    parser.add_argument('--perc', default=5, type=int)
+    parser.add_argument('--path_video', required=True, type=str)
+    args = parser.parse_args()
+
+    frame_list, frames = Utils_Video.extract_frames(args.path_video, args.perc)
+    det_frame_list,det_result_list=still_image_YOLO_DET(frame_list, frames, args.det_frames_folder,args.det_result_folder)
+    Utils_Video.make_video_from_list(args.output_name, det_frame_list)
+    print_YOLO_DET_result(det_result_list,args.result_folder, args.summary_file)
+
+    end = time.time()
+
+    print("Elapsed Time:%d Seconds"%(end-start))
+    print("Running Completed with Success!!!")
+
+
+if __name__ == '__main__':
+    main()
+
+
+

@@ -1,4 +1,7 @@
-from PIL import Image, ImageChops,ImageDraw
+from PIL import Image, ImageChops,ImageDraw, ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
+import os
+import cv2
 
 size = (640,480)
 img_save_type='PNG'
@@ -17,15 +20,23 @@ def resizeImage(file_path):
     image.thumbnail(size, Image.ANTIALIAS)
     image_size = image.size
 
-    padding[0] = max( (size[0] - image_size[0]) / 2, 0 )
-    padding[1] = max( (size[1] - image_size[1]) / 2, 0 )
+    padding_0 = max( (size[0] - image_size[0]) / 2, 0 )
+    padding_1 = max( (size[1] - image_size[1]) / 2, 0 )
 
-    if((padding[0]==0) & (padding[1]==0)):
+    orig_img = cv2.imread(file_path, 0)
+    cv2.imshow('Original Image',orig_img)
+    cv2.waitKey(2)
+
+    if((padding_0==0) & (padding_1==0)):
         image.save(file_path, img_save_type)
     else:
         thumb = image.crop( (0, 0, size[0], size[1]) )
-        thumb = ImageChops.offset(thumb, int(padding[0]), int(padding[1]))
+        thumb = ImageChops.offset(thumb, int(padding_0), int(padding_1))
         thumb.save(file_path)
+
+    resized_img = cv2.imread(file_path, 0)
+    cv2.imshow('Resized Image',resized_img)
+    cv2.waitKey(2)
 
 def resize_saveImage(file_path, new_path): 
     #Resize Cropping & Padding an image to the 640x480 pixel size
@@ -36,15 +47,30 @@ def resize_saveImage(file_path, new_path):
     image = Image.open(file_path)
     image.thumbnail(size, Image.ANTIALIAS)
     image_size = image.size
-    padding[0] = max( (max_size_0 - new_img_0) / 2, 0 )
-    padding[1] = max( (max_size_1 - new_img_1) / 2, 0 )
 
-    if((padding[0]==0) & (padding[1]==0)):
+    padding_0 = max( (size[0] - image_size[0]) / 2, 0 )
+    padding_1 = max( (size[1] - image_size[1]) / 2, 0 )
+
+    orig_img = cv2.imread(file_path, 0)
+    cv2.imshow('Original Image',orig_img)
+    cv2.waitKey(2)
+
+    if((padding_0==0) & (padding_1==0)):
         image.save(new_path, img_save_type)
     else:
         thumb = image.crop( (0, 0, size[0], size[1]) )
-        thumb = ImageChops.offset(thumb, int(padding[0]), int(padding[1]))
+        thumb = ImageChops.offset(thumb, int(padding_0), int(padding_1))
         thumb.save(new_path)
+
+    resized_img = cv2.imread(new_path, 0)
+    cv2.imshow('Resized Image',resized_img)
+    cv2.waitKey(2)
+
+    if not check_image_with_pil(new_path):
+        print 'ERROR: Rename & Save for: %s'%new_path
+    if check_image_with_pil(file_path):
+        os.remove(file_path)
+        #print 'Delected old File: %s'%file_path
 
     return padding
 
@@ -108,12 +134,16 @@ def get_Image_List(path, ext):
             files_list.append(os.path.join(path, filename))
     return files_list
 
-
-
-
-
-    
-
-
-
-
+def change_extension(file_path, ext_1, ext_2):
+    #Resize Cropping & Padding an image to the 640x480 pixel size
+    if check_image_with_pil(file_path):
+    	image = Image.open(file_path)
+	#print'Starting Path: %s'% file_path
+    	
+	new_path=file_path.replace(ext_1,ext_2)
+    	#print'New Path: %s'%  new_path
+	image.save(new_path, img_save_type)
+   	if check_image_with_pil(new_path):
+		#print 'Rename & Save completed Correct for: %s'%new_path 
+		os.remove(file_path)
+	else : print 'ERROR: Rename & Save for: %s'%new_path

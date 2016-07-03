@@ -1,4 +1,4 @@
-#### Import from Tensorbox Project
+#### Import from Tensorbox
 
 import tensorflow as tf
 import matplotlib.pyplot as plt
@@ -25,9 +25,33 @@ import Utils_Video
 from PIL import Image, ImageChops,ImageDraw
 import progressbar
 import time
-import argparse
 import os
 import sys
+
+########## SETTING PARAMETERS
+
+folder_path_det_frames='det_frames/'
+folder_path_frames='frames/'
+
+folder_path_det_result='det_results/'
+folder_path_summary_result='summary_result/'
+
+file_name_summary_result='results.txt'
+file_path_summary_result=folder_path_summary_result+'results.txt'
+
+path_video='airplanes.mp4'
+path_video_out='test.mp4'
+path_video_folder = os.path.splitext(os.path.basename(path_video))[0]
+
+video_perc=5
+
+
+######### TENSORBOX PARAMETERS
+
+hypes_file = './hypes/overfeat_rezoom.json'
+weights_file= './output/save.ckpt-1090000'
+pred_idl = './%s/%s_val.idl' % (path_video_folder, path_video_folder)
+idl_filename=path_video_folder+'/'+path_video_folder+'.idl'
 
 ####### FUNCTIONS DEFINITIONS
 
@@ -86,7 +110,11 @@ def add_rectangles(H, orig_image, confidences, boxes, arch, use_stitching=False,
     
     return image, rects
 
-def still_image_TENSORBOX(idl_filename, frames_list,folder_path_det_frames,folder_path_det_result,folder_path_frames,path_video_folder,hypes_file,weights_file,pred_idl):
+
+
+
+
+def still_image_TENSORBOX(idl_filename, frames_list):
     
     print("Starting DET Phase")
     
@@ -169,59 +197,24 @@ def still_image_TENSORBOX(idl_filename, frames_list,folder_path_det_frames,folde
 
     return det_frames_list
 
+
 ######### MAIN ###############
 
-def main():
-    '''
-    Parse command line arguments and execute the code 
+start = time.time()
 
-    '''
+idl_filename, frame_list = Utils_Video.extract_idl_from_frames(path_video, video_perc, path_video_folder, folder_path_frames, idl_filename )
 
-    ######### TENSORBOX PARAMETERS
+progress = progressbar.ProgressBar(widgets=[progressbar.Bar('=', '[', ']'), ' ',progressbar.Percentage(), ' ',progressbar.ETA()])
 
 
-    start = time.time()
+for image_path in progress(frame_list):
+    Utils_Image.resizeImage(image_path)
 
-    parser = argparse.ArgumentParser()
+det_frame_list=still_image_TENSORBOX(idl_filename, frame_list)
 
-    parser.add_argument('--det_frames_folder', default='det_frames/', type=str)
-    parser.add_argument('--det_result_folder', default='det_results/', type=str)
-    parser.add_argument('--frames_folder', default='frames/', type=str)
-    # parser.add_argument('--result_folder', default='summary_result/', type=str)
-    # parser.add_argument('--summary_file', default='results.txt', type=str)
-    parser.add_argument('--output_name', default='output.mp4', type=str)
-    parser.add_argument('--hypes', default='./hypes/overfeat_rezoom.json', type=str)
-    parser.add_argument('--weights', default='./output/save.ckpt-1090000', type=str)
-    parser.add_argument('--perc', default=2, type=int)
-    parser.add_argument('--path_video', required=True, type=str)
+Utils_Video.make_video_from_list(path_video_out, det_frame_list)
 
-    args = parser.parse_args()
+end = time.time()
 
-    # hypes_file = './hypes/overfeat_rezoom.json'
-    # weights_file= './output/save.ckpt-1090000'
-
-    path_video_folder = os.path.splitext(os.path.basename(args.path_video))[0]
-    pred_idl = './%s/%s_val.idl' % (path_video_folder, path_video_folder)
-    idl_filename=path_video_folder+'/'+path_video_folder+'.idl'
-    frame_list=[]
-    frame_list = Utils_Video.extract_idl_from_frames(args.path_video, args.perc, path_video_folder, args.frames_folder, idl_filename )
-
-    progress = progressbar.ProgressBar(widgets=[progressbar.Bar('=', '[', ']'), ' ',progressbar.Percentage(), ' ',progressbar.ETA()])
-
-    for image_path in progress(frame_list):
-        Utils_Image.resizeImage(image_path)
-
-    det_frame_list=still_image_TENSORBOX(idl_filename, frame_list, args.det_frames_folder, args.det_result_folder, args.frames_folder, path_video_folder, args.hypes, args.weights, pred_idl)
-    Utils_Video.make_video_from_list(args.output_name, det_frame_list)
-
-    end = time.time()
-
-    print("Elapsed Time:%d Seconds"%(end-start))
-    print("Running Completed with Success!!!")
-
-if __name__ == '__main__':
-    main()
-
-
-
-
+print("Elapsed Time:%d Seconds"%(end-start))
+print("Running Completed with Success!!!")

@@ -1,4 +1,4 @@
-
+#### Bounding Boxes Informations Class
 class BB_Rectangle(object):
 
     def __init__(self):
@@ -57,6 +57,7 @@ class BB_Rectangle(object):
             string=string+' /' + str(self.label_chall) 
         return string
 
+#### Picture Informations Class
 
 class Picture_Info(object):
     
