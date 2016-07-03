@@ -6,35 +6,29 @@ import os
 import json
 import subprocess
 from scipy.misc import imread
-
-from train import build_forward
-from utils import googlenet_load, train_utils
-from utils.annolist import AnnotationLib as al
-from utils.stitch_wrapper import stitch_rects
-from utils.train_utils import add_rectangles
-from utils.rect import Rect
-from utils.stitch_wrapper import stitch_rects
-from evaluate import add_rectangles
-import cv2
-import Utils_Image
-import Utils_Video
-
-
-#### My import
-
 from PIL import Image, ImageChops,ImageDraw
 import progressbar
 import time
 import argparse
 import os
 import sys
+import numpy as np
+import cv2
+import Utils_Image
+import Utils_Video
+
+# Import DET Alg package
+sys.path.insert(0, 'TENSORBOX')
+from train import build_forward
+from utils import googlenet_load, train_utils
+from utils.annolist import AnnotationLib as al
+from utils.stitch_wrapper import stitch_rects
+from utils.rect import Rect
+
 
 ####### FUNCTIONS DEFINITIONS
 
 def add_rectangles(H, orig_image, confidences, boxes, arch, use_stitching=False, rnn_len=1, min_conf=0.5, tau=0.25):
-    from utils.rect import Rect
-    from utils.stitch_wrapper import stitch_rects
-    import numpy as np
     image = np.copy(orig_image[0])
     boxes_r = np.reshape(boxes, (-1,
                                  arch["grid_height"],
@@ -190,8 +184,8 @@ def main():
     # parser.add_argument('--result_folder', default='summary_result/', type=str)
     # parser.add_argument('--summary_file', default='results.txt', type=str)
     parser.add_argument('--output_name', default='output.mp4', type=str)
-    parser.add_argument('--hypes', default='./hypes/overfeat_rezoom.json', type=str)
-    parser.add_argument('--weights', default='./output/save.ckpt-1090000', type=str)
+    parser.add_argument('--hypes', default='./TensorBox_SingleClass/hypes/overfeat_rezoom.json', type=str)
+    parser.add_argument('--weights', default='./TensorBox_SingleClass/output/save.ckpt-1090000', type=str)
     parser.add_argument('--perc', default=2, type=int)
     parser.add_argument('--path_video', required=True, type=str)
 

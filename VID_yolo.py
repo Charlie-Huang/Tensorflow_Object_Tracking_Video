@@ -11,7 +11,7 @@ import argparse
 import Utils_Video
 
 # Import DET Alg package
-sys.path.insert(0, 'YOLO_DET_Alg')
+sys.path.insert(0, 'YOLO')
 import YOLO_small_tf
 
 # DET Alg Params

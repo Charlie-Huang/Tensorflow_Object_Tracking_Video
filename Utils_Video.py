@@ -71,7 +71,7 @@ def extract_idl_from_frames(vid_path, video_perc, path_video_folder, folder_path
             image = vidcap.read()
 
     print("Finish Reading File Video:%s " % vid_path)
-    return idl_filename, list
+    return list
 
 
 ####### FOR YOLO ###########
