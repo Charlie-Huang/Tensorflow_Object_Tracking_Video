@@ -8,7 +8,7 @@
 
 The Project follow the below **index**:
 
-1. **[Introduction](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#1introduction);**
+1. **[Introduction](#1introduction);**
 2. **[Requitements & Installation](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#2requirement--installation);**
 3. **[YOLO Script Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#3yolo-script-usage)**
       1. **[Setting Parameters](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#isetting-parameters);**
