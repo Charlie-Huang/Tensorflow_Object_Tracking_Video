@@ -73,7 +73,7 @@ If you want to follow a guide to install the requirements here is the link for a
   After Set the Parameters, we can proceed and run the script:
   
   ```python
-    python VID_yolo.py --video.mp4
+    python VID_yolo.py --path_video video.mp4
   ```
 You will see some Terminal Output like:
 
@@ -107,15 +107,15 @@ The first one has problems in the frames order, this is why you will see so much
   After Set the Parameters, we can proceed and run the script:
   
   ```python
-    python VID_tensorbox.py --video.mp4
+    python VID_tensorbox.py --path_video video.mp4
   ```
 ## 5.Dataset Scripts
   All the scripts below are for the VID classes so if you wonna adapt them for other you have to simply change the Classes.py file where are defined the correspondencies between codes and names. All the data on the image are made respect a specific Image Ratio, because TENSORBOX works only with 640x480 PNG images, you will have to change the code a little to adapt to your needs.
   I will provide four scripts:
-  1. Process_Dataset_heavy.py: Process your dataset with a brute force approach, you will obtain more bbox and files for each class;
-  2. Process_Dataset_lightweight.py: Process your dataset with a lightweight approach making, you will obtain less bbox and files for each class;
-  3. Resize_Dataset.py: Resize your dataset to 640x480 PNG images;
-  4. Test_Processed_Data.py: Will test that the process end well without errors.
+  1. **Process_Dataset_heavy.py**: Process your dataset with a brute force approach, you will obtain more bbox and files for each class;
+  2. **Process_Dataset_lightweight.py**: Process your dataset with a lightweight approach making, you will obtain less bbox and files for each class;
+  3. **Resize_Dataset.py**: Resize your dataset to 640x480 PNG images;
+  4. **Test_Processed_Data.py**: Will test that the process end well without errors.
 
 ## 6.Copyright
 
