@@ -1,12 +1,12 @@
 # Tensorflow_Object_Tracking_Video
 
-(Version 0.1, Last Update 25-06-2016)
+(Version 0.1, Last Update 03-07-2016)
 
 ![alt text](images/UPC_logo.png "Logo Title Text 1")
 ![alt text](images/BSC_logo.png "Logo Title Text 1")
 ![alt text](images/IGP_logo.png  "Logo Title Text 1")
 
-The Project  follow the below **index**:
+The Project follow the below **index**:
 
 1. **[Introduction](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#1introduction);**
 2. **[Requitements & Installation](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#2requirement--installation);**
@@ -16,8 +16,9 @@ The Project  follow the below **index**:
 4. **[TENSORBOX SINGLE_CLASS Script Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#4tensorbox-single_class-script-usage)**
       1. **[Setting Parameters](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#isetting-parameters-1);**
       2. **[Usage](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#iiusage-1).**
-5. **[Copyright](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#5copyright);**
-6.  **[State of the Project](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#6state-of-the-project).**
+5. **[Dataset Scripts](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#5dataset-script);**
+6. **[Copyright](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#6copyright);**
+7. **[State of the Project](https://github.com/DrewNF/Tensorflow_Object_Tracking_Video#7state-of-the-project).**
 
 
 ## 1.Introduction
@@ -51,20 +52,18 @@ If you want to follow a guide to install the requirements here is the link for a
 
 ## 3.YOLO Script Usage
 ### i.Setting Parameters
-  Into the script file, at the start, you will found this paragraph:
+  This are the inline terminal argmunts taken from the script, most of them aren't required, only the video path **must** be specified when we call the script:
         
   ```python      
-    folder_path_det_frames='det_frames/'
-    folder_path_det_result='det_reults/'
-    folder_path_summary_result='summary_result/'
-    file_name_summary_result='results.txt'
-    file_path_summary_result=folder_path_summary_result+'results.txt'
-    path_video='input_video.mp4'
-    path_video_out='output_video.mp4'
-    video_perc=100
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--det_frames_folder', default='det_frames/', type=str)
+    parser.add_argument('--det_result_folder', default='det_results/', type=str)
+    parser.add_argument('--result_folder', default='summary_result/', type=str)
+    parser.add_argument('--summary_file', default='results.txt', type=str)
+    parser.add_argument('--output_name', default='output.mp4', type=str)
+    parser.add_argument('--perc', default=5, type=int)
+    parser.add_argument('--path_video', required=True, type=str)
   ```
-  
-  Leave them as set, if you want to only try a run, otherwise you can change them to test on your own data.
   
   Now you have to download the [weights](https://drive.google.com/file/d/0B2JbaJSrWLpza08yS2FSUnV2dlE/view?usp=sharing ) for YOLO and put them into /YOLO_DET_Alg/weights/.
   
@@ -74,7 +73,7 @@ If you want to follow a guide to install the requirements here is the link for a
   After Set the Parameters, we can proceed and run the script:
   
   ```python
-    python tensorflow_video.py
+    python VID_yolo.py --video.mp4
   ```
 You will see some Terminal Output like:
 
@@ -87,17 +86,40 @@ The first one has problems in the frames order, this is why you will see so much
 
 ## 4.TENSORBOX SINGLE_CLASS Script Usage
 ### i.Setting Parameters
+  This are the inline terminal argmunts taken from the script, most of them aren't required.
+  As before, only the video path **must** be specified when we call the script:
+        
+  ```python      
+    parser.add_argument('--det_frames_folder', default='det_frames/', type=str)
+    parser.add_argument('--det_result_folder', default='det_results/', type=str)
+    parser.add_argument('--frames_folder', default='frames/', type=str)
+    parser.add_argument('--output_name', default='output.mp4', type=str)
+    parser.add_argument('--hypes', default='./hypes/overfeat_rezoom.json', type=str)
+    parser.add_argument('--weights', default='./output/save.ckpt-1090000', type=str)
+    parser.add_argument('--perc', default=2, type=int)
+    parser.add_argument('--path_video', required=True, type=str)
+  ```
+
+  For TENSORBOX knowledge [here](https://github.com/Russell91/TensorBox) you can find Original code(Tensorflow & Caffe implementation).
   
 ### ii.Usage
+  After Set the Parameters, we can proceed and run the script:
+  
+  ```python
+    python VID_tensorbox.py --video.mp4
+  ```
+## 5.Dataset Scripts
 
-## 5.Copyright
+
+
+## 6.Copyright
 
 According to the LICENSE file of the original code,
 
   - Me and original author hold no liability for any damages;
   - Do not use this on commercial!.
 
-## 6.State of the Project
+## 7.State of the Project
 
   - Support only YOLO DET Algorithm;
   - Not support Training;
