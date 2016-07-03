@@ -184,8 +184,8 @@ def main():
     # parser.add_argument('--result_folder', default='summary_result/', type=str)
     # parser.add_argument('--summary_file', default='results.txt', type=str)
     parser.add_argument('--output_name', default='output.mp4', type=str)
-    parser.add_argument('--hypes', default='./TensorBox_SingleClass/hypes/overfeat_rezoom.json', type=str)
-    parser.add_argument('--weights', default='./TensorBox_SingleClass/output/save.ckpt-1090000', type=str)
+    parser.add_argument('--hypes', default='./TENSORBOX/hypes/overfeat_rezoom.json', type=str)
+    parser.add_argument('--weights', default='./TENSORBOX/output/save.ckpt-1090000', type=str)
     parser.add_argument('--perc', default=2, type=int)
     parser.add_argument('--path_video', required=True, type=str)
 
