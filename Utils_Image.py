@@ -83,7 +83,7 @@ def getpadd_Image(size_img_0, size_img_1, max_size_0, max_size_1):
     new_img_1=int(size_img_1/max_ratio)
     new_ratio=int(new_img_0/new_img_1)
     if new_ratio is not int(max_ratio):
-    	print "Ratio Error"
+        print "Ratio Error"
     padding[0] = max( (max_size_0 - new_img_0) / 2, 0 )
     padding[1] = max( (max_size_1 - new_img_1) / 2, 0 )
 
@@ -100,30 +100,84 @@ def transform_point(size_img_0, size_img_1, max_size_0, max_size_1, point, xory)
     # print 'Starting Point Img: %d'% point
     # print 'Max Ratio New Img: %d'%max_ratio
     if(max_ratio==1):
-	if xory:
-	   # print "x point"
-    	   padding = max( (max_size_0 - size_img_0) / 2, 0 )
-    	else: 
-	   # print "y point"
-           padding = max( (max_size_1 - size_img_1) / 2, 0 )
-	point = point + padding
+        if xory:
+            #print "x point"
+           padding = max( (max_size_0 - size_img_0) / 2, 0 )
+        else:
+            #print "y point"    
+            padding = max( (max_size_1 - size_img_1) / 2, 0 )
+        point = point + padding
     else:   
-	new_img_0=int(size_img_0/max_ratio)
-	new_img_1=int(size_img_1/max_ratio)
-	new_ratio=int(new_img_0/new_img_1)
-	old_ratio=int(size_img_0/size_img_1)
-	if new_ratio is not old_ratio:
-	    print "Ratio Error %d : %d"%(new_ratio,old_ratio)
-	if xory:
-	    # print "x point"
-    	    padding = max( (max_size_0 - new_img_0) / 2, 0 )
-    	else:
-	    # print "y point"
-            padding = max( (max_size_1 - new_img_1) / 2, 0 )
-    point = int(point/max_ratio)+ padding
+        new_img_0=int(size_img_0/max_ratio)
+        new_img_1=int(size_img_1/max_ratio)
+        new_ratio=int(new_img_0/new_img_1)
+        old_ratio=int(size_img_0/size_img_1)
+        if new_ratio is not old_ratio:
+            print "Ratio Error %d : %d"%(new_ratio,old_ratio)
+            if xory:
+               # print "x point"
+               padding = max( (max_size_0 - new_img_0) / 2, 0 )
+            else:
+               # print "y point"
+                padding = max( (max_size_1 - new_img_1) / 2, 0 )
+            point = int(point/max_ratio)+ padding
     # print 'Padding Point Img: %d'%padding 
     # print 'Ending Point Img: %d'%point
     return point
+
+def get_orig_point(size_img_0, size_img_1, max_size_0, max_size_1, point, xory):
+    orig_ratio=float(size_img_0/size_img_1)
+    new_ratio=-1
+    max_ratio=float(max(float(size_img_0/max_size_0),float(size_img_1/max_size_1),1))
+    # print 'Size W Img: %d'% size_img_0
+    # print 'Size H Img: %d'% size_img_1
+    # print 'Size MW Img: %d'% max_size_0
+    # print 'Size MH Img: %d'% max_size_1
+    # print 'Starting Point Img: %d'% point
+    # print 'Max Ratio New Img: %d'%max_ratio
+    if(max_ratio==1):
+        if xory:
+            # print "x point"
+            padding = max( (max_size_0 - size_img_0) / 2, 0 )
+        else: 
+            # print "y point"
+            padding = max( (max_size_1 - size_img_1) / 2, 0 )
+        point = point - padding
+    else:   
+        new_img_0=int(size_img_0/max_ratio)
+        new_img_1=int(size_img_1/max_ratio)
+        new_ratio=int(new_img_0/new_img_1)
+        old_ratio=int(size_img_0/size_img_1)
+        if new_ratio is not old_ratio:
+            print "Ratio Error %d : %d"%(new_ratio,old_ratio)
+        if xory:
+            # print "x point"
+            padding = max( (max_size_0 - new_img_0) / 2, 0 )
+        else:
+            # print "y point"
+            padding = max( (max_size_1 - new_img_1) / 2, 0 )
+        point = int(point*max_ratio)- padding
+    # print 'Padding Point Img: %d'%padding 
+    # print 'Ending Point Img: %d'%point
+    return point
+
+def transform_rect((size_img_0, size_img_1), (max_size_0, max_size_1), (x1point, y1point, x2point, y2point)):
+    
+    newx1=transform_point(size_img_0, size_img_1, max_size_0, max_size_1, x1point, True)
+    newy1=transform_point(size_img_0, size_img_1, max_size_0, max_size_1, y1point, False)
+    newx2=transform_point(size_img_0, size_img_1, max_size_0, max_size_1, x2point, True)
+    newy2=transform_point(size_img_0, size_img_1, max_size_0, max_size_1, y2point, False)
+
+    return (newx1,newy1,newx2,newy2)
+
+def get_orig_rect((size_img_0, size_img_1), (max_size_0, max_size_1), (x1point, y1point, x2point, y2point)):
+    
+    newx1=get_orig_point(size_img_0, size_img_1, max_size_0, max_size_1, x1point, True)
+    newy1=get_orig_point(size_img_0, size_img_1, max_size_0, max_size_1, y1point, False)
+    newx2=get_orig_point(size_img_0, size_img_1, max_size_0, max_size_1, x2point, True)
+    newy2=get_orig_point(size_img_0, size_img_1, max_size_0, max_size_1, y2point, False)
+
+    return (newx1,newy1,newx2,newy2)
 
 
 def get_Image_List(path, ext):
