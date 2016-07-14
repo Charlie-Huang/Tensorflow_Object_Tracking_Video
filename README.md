@@ -1,6 +1,6 @@
 # Tensorflow_Object_Tracking_Video
 
-(Version 0.1, Last Update 03-07-2016)
+(Version 0.1, Last Update 14-07-2016)
 
 ![alt text](images/UPC_logo.png "Logo Title Text 1")
 ![alt text](images/BSC_logo.png "Logo Title Text 1")
@@ -16,9 +16,13 @@ The Project follow the below **index**:
 4. **[TENSORBOX SINGLE_CLASS Script Usage](#4tensorbox-single_class-script-usage)**
       1. **[Setting Parameters](#isetting-parameters-1);**
       2. **[Usage](#iiusage-1).**
-5. **[Dataset Scripts](#5dataset-script);**
-6. **[Copyright](#6copyright);**
-7. **[State of the Project](#7state-of-the-project).**
+5. **[TENSORBOX MULTICLASS Script Usage](#5tensorbox-multi_class-script-usage)**
+      1. **[Setting Parameters](#isetting-parameters-2);**
+      2. **[Usage](#iiusage-2).**
+6. **[TENSORBOX TESTS FILES](#6tensorbox-tests);**
+7. **[Dataset Scripts](#7dataset-script);**
+8. **[Copyright](#8copyright);**
+9. **[State of the Project](#9state-of-the-project).**
 
 
 ## 1.Introduction
@@ -90,9 +94,6 @@ The first one has problems in the frames order, this is why you will see so much
   As before, only the video path **must** be specified when we call the script:
         
   ```python      
-    parser.add_argument('--det_frames_folder', default='det_frames/', type=str)
-    parser.add_argument('--det_result_folder', default='det_results/', type=str)
-    parser.add_argument('--frames_folder', default='frames/', type=str)
     parser.add_argument('--output_name', default='output.mp4', type=str)
     parser.add_argument('--hypes', default='./hypes/overfeat_rezoom.json', type=str)
     parser.add_argument('--weights', default='./output/save.ckpt-1090000', type=str)
@@ -107,9 +108,35 @@ The first one has problems in the frames order, this is why you will see so much
   After Set the Parameters, we can proceed and run the script:
   
   ```python
-    python VID_tensorbox.py --path_video video.mp4
+    python VID_tensorbox_single_class.py --path_video video.mp4
   ```
-## 5.Dataset Scripts
+
+## 5.TENSORBOX MULTI_CLASS Script Usage
+### i.Setting Parameters
+  This are the inline terminal argmunts taken from the script, most of them aren't required.
+  As before, only the video path **must** be specified when we call the script:
+        
+  ```python      
+    parser.add_argument('--output_name', default='output.mp4', type=str)
+    parser.add_argument('--hypes', default='./hypes/overfeat_rezoom.json', type=str)
+    parser.add_argument('--weights', default='./output/save.ckpt-1090000', type=str)
+    parser.add_argument('--perc', default=2, type=int)
+    parser.add_argument('--path_video', required=True, type=str)
+  ```
+  I will soon put a weight file to download.
+  For train and spec on the multiclass implementation I will add them after the end of my thesis project.
+  
+### ii.Usage
+  After Set the Parameters, we can proceed and run the script:
+  
+  ```python
+    python VID_tensorbox_multi_class.py --path_video video.mp4
+  ```  
+
+## 6.Tensorbox Tests
+  Between the files you can find two folders containing some result of the runs of the TENSOBOX scripts one for the single and one for the multi class script.
+  
+## 7.Dataset Scripts
   All the scripts below are for the VID classes so if you wonna adapt them for other you have to simply change the Classes.py file where are defined the correspondencies between codes and names. All the data on the image are made respect a specific Image Ratio, because TENSORBOX works only with 640x480 PNG images, you will have to change the code a little to adapt to your needs.
   I will provide four scripts:
   1. **Process_Dataset_heavy.py**: Process your dataset with a brute force approach, you will obtain more bbox and files for each class;
@@ -117,14 +144,14 @@ The first one has problems in the frames order, this is why you will see so much
   3. **Resize_Dataset.py**: Resize your dataset to 640x480 PNG images;
   4. **Test_Processed_Data.py**: Will test that the process end well without errors.
 
-## 6.Copyright
+## 8.Copyright
 
 According to the LICENSE file of the original code,
 
   - Me and original author hold no liability for any damages;
   - Do not use this on commercial!.
 
-## 7.State of the Project
+## 9.State of the Project
 
   - Support both YOLO and TENSORBOX (SingleClass) DET Algorithm;
   - Support Training **ONLY TENSOBOX Training**;
