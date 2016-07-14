@@ -14,7 +14,7 @@ def init(H, config=None):
 
     features_layers = ['output/confidences', 'output/boxes']
 
-    graph_def_orig_file = '%s/../data/googlenet.pb' % os.path.dirname(os.path.realpath(__file__))
+    graph_def_orig_file = './TENSORBOX/data/googlenet.pb'
 
     dense_layer_num_output = [k, 4]
 
