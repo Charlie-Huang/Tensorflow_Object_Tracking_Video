@@ -134,7 +134,7 @@ The first one has problems in the frames order, this is why you will see so much
   ```  
 
 ## 6.Tensorbox Tests
-  Between the files you can find two folders containing some result of the runs of the TENSOBOX scripts one for the single and one for the multi class script.
+  In the files you can find two folders containing some result of the runs of the TENSOBOX scripts one for the single and one for the multi class.
   
 ## 7.Dataset Scripts
   All the scripts below are for the VID classes so if you wonna adapt them for other you have to simply change the Classes.py file where are defined the correspondencies between codes and names. All the data on the image are made respect a specific Image Ratio, because TENSORBOX works only with 640x480 PNG images, you will have to change the code a little to adapt to your needs.
