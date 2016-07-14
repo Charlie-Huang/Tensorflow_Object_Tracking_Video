@@ -17,7 +17,7 @@ from utils.annolist import AnnotationLib as al
 from utils.rect import Rect
 #Modified
 
-from rect_multiclass import Rect_Multiclass
+from utils.rect_multiclass import Rect_Multiclass
 
 
 #### My import
